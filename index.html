@@ -1,0 +1,557 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>𓆩 LanxXCheax 𓆪</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700&display=swap" rel="stylesheet">
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:'Orbitron',sans-serif;
+-webkit-tap-highlight-color: transparent;
+outline:none;
+}
+
+body{
+background:#050008;
+color:white;
+overflow-x:hidden;
+}
+
+/* LOADING */
+#loading{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:black;
+display:flex;
+justify-content:center;
+align-items:center;
+flex-direction:column;
+z-index:99999;
+}
+
+.loader{
+width:140px;
+height:140px;
+border-radius:50%;
+border:8px solid #2b0038;
+border-top:8px solid #00ff88;
+border-right:8px solid #00ffff;
+animation:spin .7s linear infinite;
+box-shadow:
+0 0 30px #00ff88,
+0 0 60px #00ffff;
+}
+
+.loading-text{
+margin-top:25px;
+font-size:28px;
+color:#00ff88;
+text-shadow:0 0 20px #00ff88;
+}
+
+@keyframes spin{
+100%{transform:rotate(360deg);}
+}
+
+#content{
+display:none;
+padding:20px;
+}
+
+/* NAVBAR */
+.navbar{
+padding:20px;
+border:2px solid #6a00ff;
+border-radius:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+box-shadow:0 0 20px #6a00ff;
+margin-bottom:25px;
+position:relative;
+}
+
+.logo{
+font-size:35px;
+color:#ff00ff;
+text-shadow:0 0 20px #ff00ff;
+font-weight:bold;
+}
+
+.menu{
+font-size:35px;
+color:#ff00ff;
+cursor:pointer;
+}
+
+/* DROPDOWN */
+.dropdown{
+display:none;
+position:absolute;
+top:90px;
+right:0;
+background:#120012;
+border:2px solid #ff00ff;
+border-radius:15px;
+padding:15px;
+box-shadow:0 0 20px #ff00ff;
+z-index:999;
+}
+
+.dropdown a{
+color:#ff00ff;
+text-decoration:none;
+font-size:18px;
+display:block;
+}
+
+/* CARD */
+.card{
+background:#130018;
+border:2px solid #7a00ff;
+border-radius:35px;
+padding:25px;
+margin-bottom:35px;
+box-shadow:0 0 25px #6a00ff;
+position:relative;
+}
+
+.tag{
+position:absolute;
+top:0;
+right:0;
+background:#8cff8c;
+color:black;
+padding:10px 20px;
+border-radius:0 30px 0 20px;
+font-size:18px;
+font-weight:bold;
+}
+
+.image-box{
+width:100%;
+height:140px;
+background:#2b0038;
+border-radius:20px;
+display:flex;
+justify-content:center;
+align-items:center;
+font-size:70px;
+color:#ff00ff;
+margin-bottom:30px;
+box-shadow:0 0 20px #ff00ff inset;
+}
+
+.title{
+text-align:center;
+font-size:38px;
+color:#ffc0ff;
+text-shadow:0 0 20px #ff00ff;
+margin-bottom:30px;
+}
+
+.price{
+background:black;
+padding:20px;
+border-radius:15px;
+text-align:center;
+font-size:55px;
+color:#ff00ff;
+margin-bottom:20px;
+text-shadow:0 0 20px #ff00ff;
+}
+
+.desc{
+text-align:center;
+font-size:14px;
+color:#ddd;
+margin-bottom:30px;
+}
+
+.btn{
+width:100%;
+padding:22px;
+border:2px solid #ff00ff;
+border-radius:20px;
+background:transparent;
+color:#ff00ff;
+font-size:28px;
+font-weight:bold;
+cursor:pointer;
+}
+
+.btn:hover{
+background:#ff00ff;
+color:black;
+}
+
+/* FITUR */
+.fitur{
+margin-top:50px;
+padding:30px;
+border:2px solid #7a00ff;
+border-radius:25px;
+box-shadow:0 0 20px #6a00ff;
+background:#100015;
+}
+
+.fitur h1{
+text-align:center;
+font-size:35px;
+margin-bottom:30px;
+color:#ff00ff;
+text-shadow:0 0 15px #ff00ff;
+}
+
+.fitur-box{
+background:black;
+padding:18px;
+margin-bottom:15px;
+border-radius:15px;
+border:1px solid #ff00ff;
+font-size:18px;
+}
+
+/* POPUP */
+.popup{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100vh;
+background:rgba(0,0,0,0.85);
+display:none;
+justify-content:center;
+align-items:center;
+z-index:9999;
+padding:20px;
+}
+
+.popup-box{
+width:100%;
+max-width:500px;
+background:#120012;
+border:2px solid #ff00ff;
+border-radius:25px;
+padding:25px;
+box-shadow:0 0 30px #ff00ff;
+}
+
+.popup-box h1{
+color:#ff00ff;
+font-size:38px;
+margin-bottom:10px;
+}
+
+.popup-box h2{
+color:#73ffd1;
+font-size:30px;
+margin-bottom:25px;
+}
+
+.popup-box input{
+width:100%;
+padding:18px;
+border-radius:15px;
+border:2px solid #7a00ff;
+background:transparent;
+color:white;
+font-size:18px;
+margin-bottom:10px;
+}
+
+.popup-box button{
+width:100%;
+padding:18px;
+border:none;
+border-radius:18px;
+background:linear-gradient(90deg,#6a00ff,#ff00ff);
+color:white;
+font-size:20px;
+font-weight:bold;
+margin-top:20px;
+cursor:pointer;
+}
+
+.popup-box p{
+margin-top:15px;
+text-align:center;
+cursor:pointer;
+}
+
+#notif{
+color:red;
+font-size:15px;
+height:20px;
+}
+
+.pay-text{
+margin:25px 0;
+line-height:30px;
+font-size:18px;
+}
+
+.qris{
+width:100%;
+border-radius:20px;
+border:3px solid #ff00ff;
+margin-top:20px;
+}
+</style>
+</head>
+
+<body>
+
+<!-- LOADING -->
+<div id="loading">
+<div class="loader"></div>
+<div class="loading-text">
+LOADING
+<span id="percent">0%</span>
+</div>
+</div>
+
+<div id="content">
+
+<!-- NAVBAR -->
+<div class="navbar">
+<div class="logo">FILE FREE LANX</div>
+<div class="menu" onclick="toggleMenu()">FREE</div>
+
+<div class="dropdown" id="dropdownMenu">
+<a href="https://whatsapp.com/channel/0029Vb7IVBjCHDyuEJHRim1y">SALURAN LANX</a>
+</div>
+</div>
+
+<!-- ITEMS -->
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆩</div>
+<div class="title">BODYLOCK BRUTAL</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/re3l3iuvuc4fv7o/BODYLOCK+BRUTAL.zip/file')">
+  ⬇ DOWNLOAD
+</button>
+</div>
+
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆩</div>
+<div class="title">HEADLOCK 100%</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/hflpjm8s4dxnddp/NEW_HEADLOCK_100%2525.zip/file')">
+  ⬇ DOWNLOAD
+</button>
+</div>
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆩</div>
+<div class="title">ZYVER HEADLOCK 80%</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/1i9xmztk1ntjliq/ZYVER_HEADLOCK_%255B80%2525%255D_%25C2%25A9YonzCiterz.zip/file')">
+  ⬇ DOWNLOAD
+</button>
+</div>
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆩</div>
+<div class="title">MACRO HS</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/7b0efm8m8h3vozp/MACRO_HS_95%2525_%2540JekkX%2521.zip/file')">
+  ⬇ DOWNLOAD 
+</button>
+</div>
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆪</div>
+<div class="title">RDS SUPERLOCK</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/ykzrblmsc9wgkd1/%255B_V2_%255D_RDS_HEADRICK_SUPERLOCK_-_PREMIUM%25282%2529.zip/file')">
+  ⬇ DOWNLOAD 
+</button>
+</div>
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆪</div>
+<div class="title">RHS HEADLOCK 70%</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/chhh669u6znkahm/RHS_HEADLOCK_70%2525_-_2.0.zip/file')">
+  ⬇ DOWNLOAD 
+</button>
+</div>
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆪</div>
+<div class="title">HEADRICK 70%</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/bssb74paej66lcw/HEADTRICK_70%25E2%2584%2585_-_%2540ZENN.zip/file')">
+  ⬇ DOWNLOAD 
+</button>
+</div>
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆪</div>
+<div class="title">HYR HEADLOCK 85%</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/aaj18uimcj0etk6/HYR+HEADLOCK+85')">
+  ⬇ DOWNLOAD 
+</button>
+</div>
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆪</div>
+<div class="title">RYZ HEADLOCK SUPERLOCK</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/vt887dsol2j0sbx/%C2%A9RYZ_HEADLOCK_SUPERLOCK.zip/file?dkey=vt887dsol2j0sbx')">
+  ⬇ DOWNLOAD 
+</button>
+</div>
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆪</div>
+<div class="title">MXN DRAG HS 60%</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/dy6qbhmwhe0iywt/MXN_DRAG_HS_60%2525.zip/file')">
+  ⬇ DOWNLOAD 
+</button>
+</div>
+
+<div class="card">
+<div class="tag">FREE</div>
+<div class="image-box">𓆪</div>
+<div class="title">DRAG HS SG/SMG</div>
+<div class="price">FREE</div>
+<button class="btn" onclick="downloadFile('https://www.mediafire.com/file/etuvimemdbu8rk5/FF_DRAG_HEADSHOT_SG_%2526_SMG.7z/file')">
+  ⬇ DOWNLOAD 
+</button>
+</div>
+
+</div>
+
+<!-- POPUP -->
+<div class="popup" id="popup">
+<div class="popup-box">
+<h1 id="judul"></h1>
+<h2 id="harga"></h2>
+
+<input type="text" id="nickname" placeholder="Masukkan nickname / ID">
+<div id="notif"></div>
+
+<button onclick="lanjutBayar()">LANJUT PEMBAYARAN →</button>
+<p onclick="closePopup()">X BATAL</p>
+</div>
+</div>
+
+<!-- PAYMENT -->
+<div class="popup" id="paymentPopup">
+<div class="popup-box">
+
+<h1 id="judulBayar"></h1>
+<h2 id="hargaBayar"></h2>
+
+<div class="pay-text">
+<p>• DANA : 082155521748</p>
+<p>• ATAS NAMA : Siti</p>
+<p>• QRIS</p>
+</div>
+
+<img src="qris.png" class="qris">
+
+<button onclick="window.location.href='https://wa.me/6282155521748?text=SAYA+SUDAH+BAYAR+INI+BUKTI+NYA'">
+SEND BUKTI KE LANX
+</button>
+
+<p onclick="closePayment()">X TUTUP</p>
+
+</div>
+</div>
+
+<script>
+
+let persen = 0;
+
+const loadingText = document.querySelector(".loading-text");
+
+let interval = setInterval(() => {
+
+    persen++;
+
+    loadingText.innerHTML =
+    "MEMUAT HALAMAN... " + persen + "%";
+
+    if(persen >= 100){
+
+        clearInterval(interval);
+
+        document.getElementById("loading").style.display =
+        "none";
+
+        document.getElementById("content").style.display =
+        "block";
+
+    }
+
+},30);
+
+let produk="";
+let harga="";
+
+function downloadFile(link){
+    let a = document.createElement("a");
+    a.href = link;
+    a.download = "";
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+}
+
+function openPopup(n,h){
+produk=n;
+harga=h;
+document.getElementById("judul").innerText=n;
+document.getElementById("harga").innerText=h;
+document.getElementById("popup").style.display="flex";
+}
+
+function closePopup(){
+document.getElementById("popup").style.display="none";
+}
+
+function lanjutBayar(){
+let nick=document.getElementById("nickname").value;
+if(nick.trim()==""){
+document.getElementById("notif").innerText="Nickname / ID wajib di isi!";
+return;
+}
+document.getElementById("popup").style.display="none";
+document.getElementById("judulBayar").innerText=produk;
+document.getElementById("hargaBayar").innerText=harga;
+document.getElementById("paymentPopup").style.display="flex";
+}
+
+function closePayment(){
+document.getElementById("paymentPopup").style.display="none";
+}
+
+</script>
+
+</body>
+</html>
